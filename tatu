@@ -1,0 +1,4247 @@
+[1mdiff --git a/entrance/.chapel/altar b/entrance/.chapel/altar[m
+[1mdeleted file mode 100755[m
+[1mindex 6a3a05d..0000000[m
+[1m--- a/entrance/.chapel/altar[m
+[1m+++ /dev/null[m
+[36m@@ -1,326 +0,0 @@[m
+[31m-#!/bin/bash[m
+[31m-#[m
+[31m-# If you are reading this, you have wandered out of bounds[m
+[31m-# and are reading the code that drives the game.[m
+[31m-#[m
+[31m-#                    Congratulations![m
+[31m-#[m
+[31m-# Learning Linux is all about curiosity, so read this code and see[m
+[31m-# if you can figure out what it does.[m
+[31m-#[m
+[31m-# When you're ready to continue playing the game, though, stick to[m
+[31m-# the scrolls. If you're stuck, go to Gitlab and create an issue.[m
+[31m-# We're happy to provide hints.[m
+[31m-#[m
+[31m-echo "In the corner is a decaying old altar of some forgotten god."[m
+[31m-printf "\n"[m
+[31m-echo "There is a small trinket on the ground."[m
+[31m-echo "It looks religious in nature."[m
+[31m-echo "Do you want to put the trinket back on the altar?"[m
+[31m-printf "\n"[m
+[31m-read RESP[m
+[31m-[m
+[31m-if [ $RESP = "y" -o $RESP = "Y" ]; then[m
+[31m-   echo "You place the trinket upon the altar."[m
+[31m-   echo "You feel a gentle breeze pass through the room."[m
+[31m-   touch .bless[m
+[31m-else[m
+[31m-   echo "Do you want to take the trinket for yourself?"[m
+[31m-   read RESP[m
+[31m-   if [ $RESP = "y" -o $RESP = "Y" ]; then[m
+[31m-       echo "Remember to add the trinket to your inventory!"[m
+[31m-       touch .curse[m
+[31m-   else[m
+[31m-   echo "You leave the trinket where it lies."[m
+[31m-   echo "There is a great sadness here."[m
+[31m-   echo "You feel compelled to move on."[m
+[31m-   touch .curse[m
+[31m-   fi[m
+[31m-fi[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-# Hmm, that didn't work.[m
+[31m-#[m
+[31m-# Remember, when files end in a * [m
+[31m-# it means they are applications.[m
+[31m-# Try this:[m
+[31m-#[m
+[31m-# ./altar[m
+[31m-#[m
+[31m-# If you're not seeing the * after[m
+[31m-# this file name, you're probably[m
+[31m-# forgetting to use ls -F [m
+[31m-[m
+[31m-[m
+[1mdiff --git a/entrance/.chapel/courtyard/aviary/crystal b/entrance/.chapel/courtyard/aviary/crystal[m
+[1mdeleted file mode 100755[m
+[1mindex 67bcff2..0000000[m
+[1m--- a/entrance/.chapel/courtyard/aviary/crystal[m
+[1m+++ /dev/null[m
+[36m@@ -1,432 +0,0 @@[m
+[31m-#!/bin/bash[m
+[31m-#[m
+[31m-# If you are reading this, you have wandered out of bounds[m
+[31m-# and are reading the code that drives the game.[m
+[31m-#[m
+[31m-#                    Congratulations![m
+[31m-#[m
+[31m-# Learning Linux is all about curiosity, so read this code and see[m
+[31m-# if you can figure out what it does.[m
+[31m-#[m
+[31m-# When you're ready to continue playing the game, though, stick to[m
+[31m-# the scrolls. If you're stuck, go to Gitlab and create an issue.[m
+[31m-# We're happy to provide hints.[m
+[31m-#[m
+[31m-echo "A white crystal, forged by the Queen of Winter,"[m
+[31m-echo "lies on the frosty ground."[m
+[31m-printf "\n"[m
+[31m-echo "You can prepend this item to your inventory:"[m
+[31m-printf "\n"[m
+[31m-echo "$ export I=crystal,\$I"[m
+[31m-printf "\n"[m
+[31m-echo "Remember, you can check your inventory:"[m
+[31m-printf "\n"[m
+[31m-echo "echo \$I"[m
+[31m-printf "\n"[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-##[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-[m
+[31m-#[m
+[31m-# Well that didn't work![m
+[1mdiff --git a/entrance/.chapel/courtyard/aviary/hall/monster b/entrance/.chapel/courtyard/aviary/hall/monster[m
+[1mdeleted file mode 100755[m
+[1mindex a034931..0000000[m
+[1m--- a/entrance/.chapel/courtyard/aviary/hall/monster[m
+[1m+++ /dev/null[m
+[36m@@ -1,517 +0,0 @@[m
+[31m-#!/bin/bash[m
+[31m-#[m
+[31m-# If you are reading this, you have wandered out of bounds[m
+[31m-# and are reading the code that drives the game.[m
+[31m-#[m
+[31m-#                    Congratulations![m
+[31m-#[m
+[31m-# Learning Linux is all about curiosity, so read this code and see[m
+[31m-# if you can figure out what it does.[m
+[31m-#[m
+[31m-# When you're ready to continue playing the game, though, stick to[m
+[31m-# the scrolls. If you're stuck, go to Gitlab and create an issue.[m
+[31m-# We're happy to provide hints.[m
+[31m-#[m
+[31m-gameover () {[m
+[31m-    echo "You see the corpse of a slain adventurer on the floor of the dungeon." > corpse[m
+[31m-    echo "You find the following items on the corpse:  " >> corpse[m
+[31m-    echo >> corpse[m
+[31m-    echo $I >> corpse[m
+[31m-    curr=`basename $PWD`[m
+[31m-    while [ "$curr" != "entrance" ]; do[m
+[31m-        pushd .. &> /dev/null[m
+[31m-        dirs -c[m
+[31m-        curr=`basename $PWD`[m
+[31m-    done[m
+[31m-    unset I[m
+[31m-    unset HP[m
+[31m-    $SHELL[m
+[31m-}[m
+[31m-roll() {[m
+[31m-    echo "Enter a number."[m
+[31m-    read NUM[m
+[31m-    ALPHA=$RANDOM[m
+[31m-    OMEGA=$RANDOM[m
+[31m-    A=`echo $ALPHA | cut -b 1-2`[m
+[31m-    O=`echo $OMEGA | cut -b 1-2`[m
+[31m-    let "NUM=$ALPHA % $OMEGA"[m
+[31m-    MONSTER=$RANDOM[m
+[31m-    MONSTER=`echo $MONSTER | cut -b 1-2`[m
+[31m-    NUM=`echo $NUM | cut -b 1-2`[m
+[31m-    echo "The monster rolled " $MONSTER[m
+[31m-    echo "You rolled " $NUM[m
+[31m-    resolve[m
+[31m-}[m
+[31m-[m
+[31m-resolve() {[m
+[31m-    if ! grep -Po 'sword' <<< $I &> /dev/null; then[m
+[31m-        echo "You do not have a sword!"[m
+[31m-        echo[m
+[31m-        echo "Your attacks will be less effective."[m
+[31m-        let NUM=NUM-10[m
+[31m-    fi[m
+[31m-    if [[ $MONSTER -eq $NUM ]]; then[m
+[31m-	echo "You each parry one another's attacks."[m
+[31m-	echo "Roll again..."[m
+[31m-	roll[m
+[31m-    fi[m
+[31m-    [m
+[31m-    if [[ $MONSTER -lt $NUM ]]; then[m
+[31m-       echo "A hit! A palpable hit!"[m
+[31m-       echo "You have slain the beast."[m
+[31m-       echo '#!/bin/bash[m
+[31m-             if ! grep -Po crown <<< $I &> /dev/null; then[m
+[31m-                 echo "You have found a *crown*!" [m
+[31m-                 echo "Add it to your inventory."[m
+[31m-             else[m
+[31m-                 echo "This treasure has already been taken."[m
+[31m-            fi' > treasure[m
+[31m-       chmod +x treasure[m
+[31m-       mv monster carcass[m
+[31m-    else[m
+[31m-	echo "Your attack is deflected off the monster's leathery flesh."[m
+[31m-	echo "You take 5 points damage. Deduct this from your HP."[m
+[31m-	echo 'let "HP=HP-5"'[m
+[31m-    let HP=HP-5[m
+[31m-    export HP[m
+[31m-    if [ "$HP" -le 0 ]; then[m
+[31m-        echo "You have been slain by the monster."[m
+[31m-        echo [m
+[31m-        echo "GAME OVER!"[m
+[31m-        gameover[m
+[31m-        exit 1[m
+[31m-    fi[m
+[31m-	printf "\n"[m
+[31m-	roll[m
+[31m-    fi[m
+[31m-}[m
+[31m-[m
+[31m-if [ "$0" = "./carcass" ]; then[m
+[31m-    echo "You find the carcass of a foul beast."[m
+[31m-    echo [m
+[31m-    echo "Nothing of interest lies within its remains."[m
+[31m-    exit 0[m
+[31m-fi[m
+[31m-[m
+[31m-echo "A hulking three-legged beast, with a mouth full of fangs"[m
+[31m-echo "and a barbed tail and 8 arms, lumbers toward you."[m
+[31m-printf "\n"[m
+[31m-echo "If you have a sword, you can attack."[m
+[31m-echo "Otherwise, you should run."[m
+[31m-echo "Do you want to attack? y/n"[m
+[31m-read RESP[m
+[31m-[m
+[31m-if [ $RESP = "y" -o $RESP = "Y" ];then[m
+[31m-    roll[m
+[31m-else[m
+[31m-    echo "You wisely turn and flee."[m
+[31m-    echo "Quickly cd to the previous directory."[m
+[31m-fi[m
+[31m-printf "\n"[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-##[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-[m
+[31m-#[m
+[31m-# Well that didn't work![m
+[1mdiff --git a/entrance/.chapel/courtyard/aviary/penguin b/entrance/.chapel/courtyard/aviary/penguin[m
+[1mdeleted file mode 100755[m
+[1mindex a13d227..0000000[m
+[1m--- a/entrance/.chapel/courtyard/aviary/penguin[m
+[1m+++ /dev/null[m
+[36m@@ -1,506 +0,0 @@[m
+[31m-#!/bin/bash[m
+[31m-#[m
+[31m-# If you are reading this, you have wandered out of bounds[m
+[31m-# and are reading the code that drives the game.[m
+[31m-#[m
+[31m-#                    Congratulations![m
+[31m-#[m
+[31m-# Learning Linux is all about curiosity, so read this code and see[m
+[31m-# if you can figure out what it does.[m
+[31m-#[m
+[31m-# When you're ready to continue playing the game, though, stick to[m
+[31m-# the scrolls. If you're stuck, go to Gitlab and create an issue.[m
+[31m-# We're happy to provide hints.[m
+[31m-#[m
+[31m-[m
+[31m-[m
+[31m-gameover () {[m
+[31m-    echo "You see the corpse of a slain adventurer on the floor of the dungeon." > corpse[m
+[31m-    echo "You find the following items on the corpse:  " >> corpse[m
+[31m-    echo >> corpse[m
+[31m-    echo $I >> corpse[m
+[31m-    curr=`basename $PWD`[m
+[31m-    while [ "$curr" != "entrance" ]; do[m
+[31m-        pushd .. &> /dev/null[m
+[31m-        dirs -c[m
+[31m-        curr=`basename $PWD`[m
+[31m-    done[m
+[31m-    unset I[m
+[31m-    unset HP[m
+[31m-    $SHELL[m
+[31m-}[m
+[31m-[m
+[31m-penguin_bite () {[m
+[31m-	echo "The penguin gnaws at your Bag of Holding, hoping for a morsel."[m
+[31m-	echo "Finding nothing, it takes a nip at your hand"[m
+[31m-	echo 'for 1 point of damage. (HP="let HP--").'[m
+[31m-	echo "You may avoid this damage if you have a sword"[m
+[31m-	echo "and wish to attack the penguin."[m
+[31m-	printf "\n"[m
+[31m-	echo "Do you want to attack the penguin?"[m
+[31m-	read RESP[m
+[31m-	if [ $RESP = "y" -o $RESP = "Y" ]; then[m
+[31m-	    echo "You attack the penguin, quickly doing away with it with one quick slash."[m
+[31m-	    echo "This draws the attention of the other penguins in the room."[m
+[31m-	    echo "They band together and rush at you. You fight your best."[m
+[31m-        let HP=HP-5[m
+[31m-        export HP[m
+[31m-        if [ "$HP" -le 0 ]; then[m
+[31m-            echo "The mob of penguins reduces your hit points to zero."[m
+[31m-            echo "You are slain by the mob."[m
+[31m-            gameover[m
+[31m-            exit 1[m
+[31m-        else[m
+[31m-	        echo "But a mob of penguins does not tolerate oppression, and you soon find yourself sealed in a block of ice."[m
+[31m-	        echo "There you stay, perfectly preserved for 128 years. When you are thawed, you may continue your adventure."[m
+[31m-        fi[m
+[31m-	else[m
+[31m-        let HP=HP--[m
+[31m-        export HP[m
+[31m-	    echo "You keep things in perspective, and do not lash out at the penguin."[m
+[31m-	fi[m
+[31m-}[m
+[31m-[m
+[31m-echo "One of the birds finally notices your presence."[m
+[31m-echo "It turns its head sideways, seemingly beckoning"[m
+[31m-echo "for you to come closer."[m
+[31m-printf "\n"[m
+[31m-echo "Do you get closer?"[m
+[31m-read RESP[m
+[31m-[m
+[31m-if [ $RESP = "y" -o $RESP = "Y" ]; then[m
+[31m-   echo "You take a step forward, and the bird rushes"[m
+[31m-   echo "toward you, its mouth open wide."[m
+[31m-   echo "Do you happen to have a fish?"[m
+[31m-   read RESP[m
+[31m-[m
+[31m-    if [ $RESP = "y" -o $RESP = "Y" ]; then[m
+[31m-        if grep -Po fish <<< $I; then[m
+[31m-            echo "You toss the fish at the penguin,"[m
+[31m-            echo "which catches the fish mid-air and"[m
+[31m-            echo "gobbles it down."[m
+[31m-            echo[m
+[31m-            echo "Don't forget to remove the fish from your inventory."[m
+[31m-            echo "Try the following command:"[m
+[31m-            echo [m
+[31m-            echo 'export I=`sed "s/fish//; s/,,/,/" <<< $I`'[m
+[31m-        else[m
+[31m-            echo "You don't have a fish!"[m
+[31m-            echo[m
+[31m-            penguin_bite[m
+[31m-        fi[m
+[31m-   else[m
+[31m-        penguin_bite[m
+[31m-   fi[m
+[31m-   [m
+[31m-else[m
+[31m-   echo "You back away from the penguin carefully."[m
+[31m-   echo "It loses interest in you and waddles away."[m
+[31m-fi[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-##[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-[m
+[31m-#[m
+[31m-# Well that didn't work![m
+[1mdiff --git a/entrance/.chapel/courtyard/aviary/scroll b/entrance/.chapel/courtyard/aviary/scroll[m
+[1mdeleted file mode 100644[m
+[1mindex dbbf211..0000000[m
+[1m--- a/entrance/.chapel/courtyard/aviary/scroll[m
+[1m+++ /dev/null[m
+[36m@@ -1,20 +0,0 @@[m
+[31m-[m
+[31m-You enter a room that has been magically frost-bitten.[m
+[31m-[m
+[31m-Snow and frost covers the ground, an icy pond leading perhaps[m
+[31m-to an underground lake or to the outside, is in the far corner.[m
+[31m-[m
+[31m-A few small black and white birds waddle around the room,[m
+[31m-taking no notice of you.[m
+[31m-[m
+[31m-Tip:[m
+[31m-You can make your shell autocomplete the names of files and[m
+[31m-directories by pressing the Tab key after typing the first[m
+[31m-few letters.[m
+[31m-[m
+[31m-When you move to the next room, try typing[m
+[31m-[m
+[31m-cd h[m
+[31m-[m
+[31m-and then press TAB.[m
+[31m-[m
+[1mdiff --git a/entrance/.chapel/courtyard/fountain b/entrance/.chapel/courtyard/fountain[m
+[1mdeleted file mode 100755[m
+[1mindex 22f729c..0000000[m
+[1m--- a/entrance/.chapel/courtyard/fountain[m
+[1m+++ /dev/null[m
+[36m@@ -1,455 +0,0 @@[m
+[31m-#!/bin/bash[m
+[31m-#[m
+[31m-# If you are reading this, you have wandered out of bounds[m
+[31m-# and are reading the code that drives the game.[m
+[31m-#[m
+[31m-#                    Congratulations![m
+[31m-#[m
+[31m-# Learning Linux is all about curiosity, so read this code and see[m
+[31m-# if you can figure out what it does.[m
+[31m-#[m
+[31m-# When you're ready to continue playing the game, though, stick to[m
+[31m-# the scrolls. If you're stuck, go to Gitlab and create an issue.[m
+[31m-# We're happy to provide hints.[m
+[31m-#[m
+[31m-damage() {[m
+[31m-       echo "You try to resist, but you cannot."[m
+[31m-       echo "You dip your hand into the fountain,"[m
+[31m-       echo "and you feel your skin burning."[m
+[31m-       echo "The pain snaps you out of your trance"[m
+[31m-       echo "and you only suffer -2 HP."[m
+[31m-       printf "\n"[m
+[31m-       echo "Remember to deduct 2 points from your HP variable:"[m
+[31m-       echo '$ let "HP=HP-2"'[m
+[31m-       printf "\n"[m
+[31m-}[m
+[31m-[m
+[31m-CURSE=`find .. -type f -name ".curse"`[m
+[31m-[m
+[31m-echo "Do you want to approach the fountain?"[m
+[31m-printf "\n"[m
+[31m-read RESP[m
+[31m-[m
+[31m-if [ $RESP = "y" -o $RESP = "Y" ]; then[m
+[31m-   echo "The waters sparkle in the light of your gaze."[m
+[31m-   echo "You feel drawn to it."[m
+[31m-   if [ x$CURSE = "x" ]; then[m
+[31m-       echo "But you suddenly feel strength to turn away."[m
+[31m-       echo "You hear a sigh from the altar in the chapel."[m
+[31m-   else[m
+[31m-       damage[m
+[31m-   fi[m
+[31m-else[m
+[31m-    if [ ! -z "$CURSE" ]; then[m
+[31m-	damage[m
+[31m-    fi[m
+[31m-fi[m
+[31m-[m
+[31m-[ -f ../.curse ] && rm ../.curse[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-##[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-[m
+[31m-#[m
+[31m-# Well that didn't work![m
+[1mdiff --git a/entrance/.chapel/courtyard/rags b/entrance/.chapel/courtyard/rags[m
+[1mdeleted file mode 100755[m
+[1mindex 39608ad..0000000[m
+[1m--- a/entrance/.chapel/courtyard/rags[m
+[1m+++ /dev/null[m
+[36m@@ -1,441 +0,0 @@[m
+[31m-#!/bin/bash[m
+[31m-#[m
+[31m-# If you are reading this, you have wandered out of bounds[m
+[31m-# and are reading the code that drives the game.[m
+[31m-#[m
+[31m-#                    Congratulations![m
+[31m-#[m
+[31m-# Learning Linux is all about curiosity, so read this code and see[m
+[31m-# if you can figure out what it does.[m
+[31m-#[m
+[31m-# When you're ready to continue playing the game, though, stick to[m
+[31m-# the scrolls. If you're stuck, go to Gitlab and create an issue.[m
+[31m-# We're happy to provide hints.[m
+[31m-#[m
+[31m-echo "There's a pile of old **rags**."[m
+[31m-echo "They are old and worn with age,"[m
+[31m-echo "and probably fell off of some poor adventurer."[m
+[31m-printf "\n"[m
+[31m-echo "Do you want to take the rags?"[m
+[31m-read RESP[m
+[31m-[m
+[31m-if [ $RESP = "y" -o $RESP = "Y" ];then[m
+[31m-    echo "As you take the rags from the floor, you find"[m
+[31m-    echo "a salted fish, probably from the rations of"[m
+[31m-    echo "the former owner of these rags."[m
+[31m-    echo "Prepend these item to your inventory:"[m
+[31m-    printf "\n"[m
+[31m-    echo "$ export I=rags,fish,\$I"[m
+[31m-    printf "\n"[m
+[31m-    echo "Remember, you can check your inventory:"[m
+[31m-    printf "\n"[m
+[31m-    echo "echo \$I"[m
+[31m-    printf "\n"[m
+[31m-fi[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-##[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-#[m
+[31m-[m
+[31m-#[m
+[31m-# Well that didn't work![m
+[1mdiff --git a/entrance/.chapel/courtyard/scroll b/entrance/.chapel/courtyard/scroll[m
+[1mdeleted file mode 100644[m
+[1mindex 0c643ca..0000000[m
+[1m--- a/entrance/.chapel/courtyard/scroll[m
+[1m+++ /dev/null[m
+[36m@@ -1,13 +0,0 @@[m
+[31m-[m
+[31m-There is a great fountain in the center of this courtyard.[m
+[31m-The waters are bright and clear in the magickal light[m
+[31m-emanating from your eyes.[m
+[31m-[m
+[31m-There were once plants growing here, but they are all [m
+[31m-dead and gnarled now.[m
+[31m-[m
+[31m-If you stand still here, you can hear the soft rippling[m
+[31m-of water, and even the occasional splash.[m
+[31m-[m
+[31m-Perhaps there are fish that yet live in the fountain?[m
+[31m-[m
+[1mdiff --git a/entrance/.chapel/scroll b/entrance/.chapel/scroll[m
+[1mdeleted file mode 100644[m
+[1mindex 2555b72..0000000[m
+[1m--- a/entrance/.chapel/scroll[m
+[1m+++ /dev/null[m
+[36m@@ -1,15 +0,0 @@[m
+[31m-[m
+[31m-# There is writing upon the wall.[m
+[31m-# [m
+[31m-# It is written in the common language of the land.[m
+[31m-# [m
+[31m-# It appears to be inscribed in blood:[m
+[31m-#[m
+[31m-#      T U R N    B A C K[m
+[31m-#[m
+[31m-# Speaking of turning back:[m
+[31m-#[m
+[31m-# You can re-use previous commands by pressing the[m
+[31m-# UP and DOWN arrow to scroll through your history.[m
+[31m-# Try it![m
+[31m-[m
+[1mdiff --git a/entrance/.scrap b/entrance/.scrap[m
+[1mdeleted file mode 100644[m
+[1mindex 8ba9366..0000000[m
+[1m--- a/entrance/.scrap[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-[m
+[31m-# Descend, bold traveller, into the dungeons of Posix,[m
+[31m-# which the shadow of Scartaris touches,[m
+[31m-# and you will learn the magickal incantations[m
+[31m-# of the Wildebeest.[m
+[31m-#[m
+[31m-# I have done this, in the place of the singing flame:[m
+[31m-#[m
+[31m-# ln -s ../../../../.rift portal[m
+[31m-#[m
+[31m-# [signed] Arnnisen the Gray[m
+[31m-[m
+[1mdiff --git a/entrance/.vault/glass b/entrance/.vault/glass[m
+[1mdeleted file mode 100755[m
+[1mindex 8fa1266..0000000[m
+[1m--- a/entrance/.vault/glass[m
+[1m+++ /dev/null[m
+[36m@@ -1,318 +0,0 @@[m
+[31m-#!/bin/bash[m
+[31m-#[m
+[31m-# If you are reading this, you have wandered out of bounds[m
+[31m-# and are reading the code that drives the game.[m
+[31m-#[m
+[31m-#                    Congratulations![m
+[31m-#[m
+[31m-# Learning Linux is all about curiosity, so read this code and see[m
+[31m-# if you can figure out what it does.[m
+[31m-#[m
+[31m-# When you're ready to continue playing the game, though, stick to[m
+[31m-# the scrolls. If you're stuck, go to Gitlab and create an issue.[m
+[31m-# We're happy to provide hints.[m
+[31m-# [m
+[31m-echo "Do you have an ice crystal?"[m
+[31m-printf "\n"[m
+[31m-read RESP[m
+[31m-[m
+[31m-no_crystal () {[m
+[31m-   echo "You sense that the glass shards are searching for something."[m
+[31m-   echo "Whatever it is, you cannot provide it now."[m
+[31m-   echo "Walk with care."[m
+[31m-}[m
+[31m-if [ $RESP = "y" -o $RESP = "Y" ]; then[m
+[31m-    if grep -Po crystal <<< $I &> /dev/null; then[m
+[31m-        echo "You place the ice crystal among the shards of glass."[m
+[31m-        echo "The sword in your hands becomes cold."[m
+[31m-        echo "You feel the power of 1000 blizzards coursing through it."[m
+[31m-        touch .bless[m
+[31m-    else[m
+[31m-        no_crystal[m
+[31m-    fi[m
+[31m-else[m
+[31m-    no_crystal[m
+[31m-fi[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-# Hmm, that didn't work.[m
+[31m-[m
+[31m-# Remember, when files end in a * [m
+[31m-# it means they are applications.[m
+[31m-# Try this:[m
+[31m-#[m
+[31m-# ./glass[m
+[31m-[m
+[31m-[m
+[1mdiff --git a/entrance/.vault/scroll b/entrance/.vault/scroll[m
+[1mdeleted file mode 100644[m
+[1mindex cfc84a5..0000000[m
+[1m--- a/entrance/.vault/scroll[m
+[1m+++ /dev/null[m
+[36m@@ -1,11 +0,0 @@[m
+[31m-[m
+[31m-# You have entered an asymmetric room with shards of glass[m
+[31m-# arranged along the floor in haphazard patterns.[m
+[31m-#[m
+[31m-# As you move past them, they each appear to turn slightly,[m
+[31m-# as if watching you go.[m
+[31m-#[m
+[31m-# On the wall is a picture of two goblets:[m
+[31m-# one glows brightly,[m
+[31m-# the other shines darkly[m
+[31m-[m
+[1mdiff --git a/entrance/.vault/stronghold/goblet b/entrance/.vault/stronghold/goblet[m
+[1mdeleted file mode 100755[m
+[1mindex 1d26a65..0000000[m
+[1m--- a/entrance/.vault/stronghold/goblet[m
+[1m+++ /dev/null[m
+[36m@@ -1,327 +0,0 @@[m
+[31m-#!/bin/bash[m
+[31m-#[m
+[31m-#[m
+[31m-# If you are reading this, you have wandered out of bounds[m
+[31m-# and are reading the code that drives the game.[m
+[31m-#[m
+[31m-#                    Congratulations![m
+[31m-#[m
+[31m-# Learning Linux is all about curiosity, so read this code and see[m
+[31m-# if you can figure out what it does.[m
+[31m-#[m
+[31m-# When you're ready to continue playing the game, though, stick to[m
+[31m-# the scrolls. If you're stuck, go to Gitlab and create an issue.[m
+[31m-# We're happy to provide hints.[m
+[31m-# [m
+[31m-if [[ -e goblet-light && -e goblet-dark ]]; then[m
+[31m-   echo "You have united the goblet's ethereal forms."[m
+[31m-   echo "Add the goblet to your inventory."[m
+[31m-   exit[m
+[31m-else [m
+[31m-    echo "You try to grasp the faintly glowing goblet,"[m
+[31m-    echo "but it passes through your fingers."[m
+[31m-fi[m
+[31m-[m
+[31m-printf "\n"[m
+[31m-echo "Are you stuck? Do you need a hint? y/n"[m
+[31m-read RESP[m
+[31m-[m
+[31m-if [ $RESP = "y" -o $RESP = "Y" ]; then[m
+[31m- echo "Try searching opensource.com for"[m
+[31m- echo "hints on how to copy files."[m
+[31m- printf "\n"[m
+[31m- echo "Still stuck? Do you need the answer? y/n"[m
+[31m- read RESP[m
+[31m-[m
+[31m- if [ $RESP = "y" -o $RESP = "Y" ]; then[m
+[31m-     echo "The cp command copies one file to another."[m
+[31m-     echo "Run this command:"[m
+[31m-     echo "$ cp goblet-light goblet-dark"[m
+[31m-     printf "\n"[m
+[31m-     echo "And then run this goblet script again"[m
+[31m-     echo "for confirmation."[m
+[31m- fi[m
+[31m-fi[m
+[31m-[m
+[31m-printf "\n"[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-# Hmm, that didn't work.[m
+[31m-# Remember, when files end in a * [m
+[31m-# it means they are applications.[m
+[31m-# Try this:[m
+[31m-#[m
+[31m-# ./goblet[m
+[31m-[m
+[1mdiff --git a/entrance/.vault/stronghold/goblet-light b/entrance/.vault/stronghold/goblet-light[m
+[1mdeleted file mode 100644[m
+[1mindex e69de29..0000000[m
+[1mdiff --git a/entrance/.vault/stronghold/nursery/lab/ghost b/entrance/.vault/stronghold/nursery/lab/ghost[m
+[1mdeleted file mode 100755[m
+[1mindex b278f0d..0000000[m
+[1m--- a/entrance/.vault/stronghold/nursery/lab/ghost[m
+[1m+++ /dev/null[m
+[36m@@ -1,393 +0,0 @@[m
+[31m-#!/bin/bash[m
+[31m-#[m
+[31m-# If you are reading this, you have wandered out of bounds[m
+[31m-# and are reading the code that drives the game.[m
+[31m-#[m
+[31m-#                    Congratulations![m
+[31m-#[m
+[31m-# Learning Linux is all about curiosity, so read this code and see[m
+[31m-# if you can figure out what it does.[m
+[31m-#[m
+[31m-# When you're ready to continue playing the game, though, stick to[m
+[31m-# the scrolls. If you're stuck, go to Gitlab and create an issue.[m
+[31m-# We're happy to provide hints.[m
+[31m-#[m
+[31m-gameover () {[m
+[31m-    echo "You see the corpse of a slain adventurer on the floor of the dungeon." > corpse[m
+[31m-    echo "You find the following items on the corpse:  " >> corpse[m
+[31m-    echo >> corpse[m
+[31m-    echo $I >> corpse[m
+[31m-    curr=`basename $PWD`[m
+[31m-    while [ "$curr" != "entrance" ]; do[m
+[31m-        pushd .. &> /dev/null[m
+[31m-        dirs -c[m
+[31m-        curr=`basename $PWD`[m
+[31m-    done[m
+[31m-    unset I[m
+[31m-    unset HP[m
+[31m-    $SHELL[m
+[31m-}[m
+[31m-roll() {[m
+[31m-    echo "Enter a number."[m
+[31m-    read NUM[m
+[31m-    ALPHA=$RANDOM[m
+[31m-    OMEGA=$RANDOM[m
+[31m-    A=`echo $ALPHA | cut -b 1-2`[m
+[31m-    O=`echo $OMEGA | cut -b 1-2`[m
+[31m-    let "NUM=$ALPHA % $OMEGA"[m
+[31m-    MONSTER=$RANDOM[m
+[31m-    MONSTER=`echo $MONSTER | cut -b 1-2`[m
+[31m-    NUM=`echo $NUM | cut -b 1-2`[m
+[31m-[m
+[31m-    echo "The monster rolled " $MONSTER[m
+[31m-    echo "You rolled " $NUM[m
+[31m-    [m
+[31m-    if [ -e ../../../glass/.bless ]; then[m
+[31m-	let "NUM=NUM+2"[m
+[31m-	echo "+2 bonus from a mysterious wintry patron!"[m
+[31m-    fi[m
+[31m-}[m
+[31m-[m
+[31m-resolve() {[m
+[31m-    if [[ $MONSTER -eq $NUM ]]; then[m
+[31m-	echo "You dodge an attack, but you miss your mark as a result."[m
+[31m-	echo "Roll again..."[m
+[31m-	roll[m
+[31m-    fi[m
+[31m-    [m
+[31m-    if [[ $MONSTER -lt $NUM ]]; then[m
+[31m-       echo "A hit! A palpable hit!"[m
+[31m-       echo "You have slain the spirit of the evil wizard."[m
+[31m-       echo '#!/bin/bash[m
+[31m-            if ! grep -Po emerald <<< $I &> /dev/null; then[m
+[31m-                echo "You have found an *emerald*!"[m
+[31m-                echo "Add it to your inventory."[m
+[31m-            else[m
+[31m-                echo "This treasure has already been taken."[m
+[31m-            fi' > treasure[m
+[31m-       chmod +x treasure[m
+[31m-       echo '#!/bin/bash[m
+[31m-             if ! grep -Po platinum <<< $I &> /dev/null; then[m
+[31m-                 echo "You have found a sack full of *platinum* coins!"[m
+[31m-                 echo "Add it to your inventory." [m
+[31m-             else[m
+[31m-                 echo "This treasure has already been taken."[m
+[31m-             fi' > platinum[m
+[31m-       chmod +x platinum[m
+[31m-    else[m
+[31m-	echo "Your sword swings harmlessly through the air."[m
+[31m-	echo "You take 5 points damage. Deduct this from your HP variable:"[m
+[31m-	echo 'let "HP=HP-5"'[m
+[31m-    let HP=HP-5[m
+[31m-    if [ "$HP" -le 0 ]; then[m
+[31m-        echo "You suddenly feel cold, the life force draining from your body."[m
+[31m-        echo "You have been slain by the ghost of an evil wizard."[m
+[31m-        echo[m
+[31m-        echo "GAME OVER!"[m
+[31m-        gameover[m
+[31m-        exit 1[m
+[31m-    fi[m
+[31m-	printf "\n"[m
+[31m-	roll[m
+[31m-    fi[m
+[31m-}[m
+[31m-[m
+[31m-echo "The room shakes, a gust of wind blasts you from nowhere."[m
+[31m-echo "You sense that a presence has entered the room."[m
+[31m-echo "The pain you suddenly feel assures you that you are under attack by a ghostly entity!"[m
+[31m-printf "\n"[m
+[31m-[m
+[31m-echo "If you have a sword, you can attack."[m
+[31m-echo "Otherwise, you should run."[m
+[31m-echo "Do you want to attack? y/n"[m
+[31m-read RESP[m
+[31m-[m
+[31m-if [ $RESP = "y" -o $RESP = "Y" ];then[m
+[31m-    roll[m
+[31m-    resolve[m
+[31m-else[m
+[31m-    echo "You wisely turn and flee."[m
+[31m-    echo "Quickly cd to the previous directory."[m
+[31m-fi[m
+[31m-printf "\n"[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-# Hmm, that didn't work.[m
+[31m-# Remember, when files end in a * [m
+[31m-# it means they are applications.[m
+[31m-# Try this:[m
+[31m-#[m
+[31m-# ./ghost[m
+[31m-[m
+[1mdiff --git a/entrance/.vault/stronghold/nursery/lab/scroll b/entrance/.vault/stronghold/nursery/lab/scroll[m
+[1mdeleted file mode 100644[m
+[1mindex 472667f..0000000[m
+[1m--- a/entrance/.vault/stronghold/nursery/lab/scroll[m
+[1m+++ /dev/null[m
+[36m@@ -1,11 +0,0 @@[m
+[31m-[m
+[31m-# An abandoned laboratory of a wizard long dead.[m
+[31m-# [m
+[31m-# A lone magickal torch ignites as you enter, shedding[m
+[31m-# light on the workshop, and casts haunting shadows[m
+[31m-# on every surface.[m
+[31m-#[m
+[31m-# The flames lick the walls, burning off the moss that had[m
+[31m-# gathered there. The burning moss sizzles in the silence[m
+[31m-# of the catacombs, like angelic wailing or singing.[m
+[31m-[m
+[1mdiff --git a/entrance/.vault/stronghold/nursery/scroll b/entrance/.vault/stronghold/nursery/scroll[m
+[1mdeleted file mode 100644[m
+[1mindex abafb0c..0000000[m
+[1m--- a/entrance/.vault/stronghold/nursery/scroll[m
+[1m+++ /dev/null[m
+[36m@@ -1,5 +0,0 @@[m
+[31m-[m
+[31m-# Once a thriving nursery filled with vibrant plants,[m
+[31m-# this is now the Nursery of the Still Dead (it says so,[m
+[31m-# in writing on the wall).[m
+[31m-[m
+[1mdiff --git a/entrance/.vault/stronghold/nursery/spell b/entrance/.vault/stronghold/nursery/spell[m
+[1mdeleted file mode 100755[m
+[1mindex be12281..0000000[m
+[1m--- a/entrance/.vault/stronghold/nursery/spell[m
+[1m+++ /dev/null[m
+[36m@@ -1,315 +0,0 @@[m
+[31m-#!/bin/bash[m
+[31m-#[m
+[31m-# If you are reading this, you have wandered out of bounds[m
+[31m-# and are reading the code that drives the game.[m
+[31m-#[m
+[31m-#                    Congratulations![m
+[31m-#[m
+[31m-# Learning Linux is all about curiosity, so read this code and see[m
+[31m-# if you can figure out what it does.[m
+[31m-#[m
+[31m-# When you're ready to continue playing the game, though, stick to[m
+[31m-# the scrolls. If you're stuck, go to Gitlab and create an issue.[m
+[31m-# We're happy to provide hints.[m
+[31m-#[m
+[31m-if [[ -e potion ]]; then[m
+[31m-   echo "You have summoned a potion from afar."[m
+[31m-   echo "You drink it quickly and feel a surge of strength."[m
+[31m-   echo "Add 5 HP to your score."[m
+[31m-else[m
+[31m-   echo "A page from a druid's tome of incantations lies on the ground."[m
+[31m-   echo "It reveals to you how to summon a healing potion:"[m
+[31m-   printf "\n"[m
+[31m-   echo "# To find a file on your system, use the find command."[m
+[31m-   echo '# For example, to search this room: find . -name "potion"'[m
+[31m-   echo "# Once you've found a potion, copy it to this directory"[m
+[31m-   echo "# and run this spell script again."[m
+[31m-   printf "\n"[m
+[31m-   echo "There are no potions in this room."[m
+[31m-   echo "But try searching starting at the entrance."[m
+[31m-   printf "\n"[m
+[31m-   echo "Hint: use pwd to determine how many rooms (folders)"[m
+[31m-   echo "are between you and the entrance."[m
+[31m-   printf "\n"[m
+[31m-fi[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-# Hmm, that didn't work.[m
+[31m-# Remember, when files end in a * [m
+[31m-# it means they are applications.[m
+[31m-# Try this:[m
+[31m-#[m
+[31m-# ./spell[m
+[31m-[m
+[1mdiff --git a/entrance/.vault/stronghold/scroll b/entrance/.vault/stronghold/scroll[m
+[1mdeleted file mode 100644[m
+[1mindex ca2d8a9..0000000[m
+[1m--- a/entrance/.vault/stronghold/scroll[m
+[1m+++ /dev/null[m
+[36m@@ -1,12 +0,0 @@[m
+[31m-[m
+[31m-# There is a fine golden goblet on a nearby table.[m
+[31m-# [m
+[31m-# You move toward it to take it,[m
+[31m-# but your hand passes through it as if it were illusory,[m
+[31m-# but you know this cannot be.[m
+[31m-#[m
+[31m-# You remember a spell your magick teacher,[m
+[31m-# Caitlin the Green, taught you long ago:[m
+[31m-# a spell to copy an object.[m
+[31m-#[m
+[31m-[m
+[1mdiff --git a/user/super.py b/user/super.py[m
+[1mindex afd1825..150ae09 100644[m
+[1m--- a/user/super.py[m
+[1m+++ b/user/super.py[m
+[36m@@ -1 +1 @@[m
+[31m-#Simple Program[m
+[32m+[m[32m#Simple Progrom[m
